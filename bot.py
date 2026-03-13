@@ -1,3 +1,8 @@
-name = input("What is your name? ")
+import streamlit as st
 
-print(f"Hello {name} 👋")
+st.title("🤖 Samira AI Bot")
+
+name = st.text_input("What is your name?")
+
+if name:
+    st.write(f"Hello {name} 👋")
