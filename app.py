@@ -1,8 +1,19 @@
 import streamlit as st
+from openai import OpenAI
 
-st.title("Samira AI Bot 🤖")
+st.title("Al-Hudhud AI Bot 🤖")
 
-name = st.text_input("What is your name?")
+api_key = st.text_input("Enter your OpenAI API key:", type="password")
 
-if name:
-    st.write(f"Hello {name} 👋")
+user_message = st.text_input("Write your message:")
+
+if api_key and user_message:
+    client = OpenAI(api_key=api_key)
+
+    response = client.responses.create(
+        model="gpt-4.1-mini",
+        input=user_message
+    )
+
+    st.write("AI:")
+    st.write(response.output_text)
